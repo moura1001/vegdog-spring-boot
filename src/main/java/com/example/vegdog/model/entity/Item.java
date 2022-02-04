@@ -26,6 +26,12 @@ public class Item {
 	
 	public Item() {}
 
+	public Item(long id, String nome, double preco) {
+		this.id = id;
+		this.nome = nome;
+		this.preco = preco;
+	}
+
 	public Long getId() {
 		return id;
 	}

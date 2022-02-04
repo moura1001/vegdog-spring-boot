@@ -35,6 +35,12 @@ public class Cliente {
 	
 	public Cliente(){}
 
+	public Cliente(long id, String nome, String endereco) {
+		this.id = id;
+		this.nome = nome;
+		this.endereco = endereco;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -56,10 +62,10 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
-	public List<Pedido> getAccount() {
+	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
-	public void setAccount(List<Pedido> pedidos) {
+	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 

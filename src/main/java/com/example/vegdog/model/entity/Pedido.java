@@ -1,5 +1,9 @@
 package com.example.vegdog.model.entity;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +41,14 @@ public class Pedido {
 	
 	public Pedido() {}
 
+	public Pedido(long id, Cliente cliente, List<Item> itens, double precoTotal) {
+		this.id = id;
+		this.cliente = cliente;
+		this.itens = itens;
+		this.precoTotal = precoTotal;
+		this.data = getCurrentDateDayMonthYear();
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -70,6 +82,20 @@ public class Pedido {
 	}
 	public void setPrecoTotal(Double precoTotal) {
 		this.precoTotal = precoTotal;
+	}
+	
+	private Date getCurrentDateDayMonthYear() {
+		String pattern = "dd-MM-yyyy";
+		DateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String date = simpleDateFormat.format(new Date(System.currentTimeMillis()));
+		
+		try {
+			return simpleDateFormat.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }
