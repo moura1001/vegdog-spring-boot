@@ -50,4 +50,9 @@ public class ClienteController {
 		}
 		return new ModelAndView("cliente/form", "formErrors", result.getAllErrors());
 	}
+	
+	@GetMapping("/alterar/{id}")
+	public ModelAndView updateForm(@PathVariable("id") Cliente cliente) {
+		return new ModelAndView("cliente/form", "cliente", cliente);
+	}
 }
