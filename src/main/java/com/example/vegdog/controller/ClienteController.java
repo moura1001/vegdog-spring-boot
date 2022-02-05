@@ -55,4 +55,11 @@ public class ClienteController {
 	public ModelAndView updateForm(@PathVariable("id") Cliente cliente) {
 		return new ModelAndView("cliente/form", "cliente", cliente);
 	}
+	
+	@GetMapping("/remover/{id}")
+	public String delete(@PathVariable("id") Long id, RedirectAttributes redirect) {
+		clienteRepository.deleteById(id);
+		redirect.addFlashAttribute("globalMessage", "Cliente removido com sucesso");
+		return "redirect:/clientes/";
+	}
 }
