@@ -26,7 +26,13 @@
                     </tr>
                     <tr th:each="cliente: ${clientes}">
                         <td th:text="${cliente.id}">1</td>
-                        <td th:text="${cliente.nome}">Nome</td>
+                        <td>
+                            <a th:href="@{'/clientes/'+${cliente.id}}" href="view.html"
+                                th:text="${cliente.nome}"
+                            >
+                                Nome
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
