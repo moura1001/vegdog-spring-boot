@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+	<head>
+		<title>Item</title>
+	</head>
+	<body>
+		<h1 layout:fragment="header">
+			Cadastro de item
+		</h1>
+		<div layout:fragment="content" class="input-form">
+			<div class="well">
+				<form id="itemForm" th:action="@{/itens/(form)}" th:object="${item}"
+                    action="#" method="post" class="form-horizontal"
+                >
+                    <input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" />
+                    <div class="form-group">
+                        <label for="nome" class="control-label col-sm-2">Nome</label>
+                        <input th:field="*{nome}" type="text" class="col-sm-10"
+                            th:class="${#fields.hasErrors('nome')} ? 'field-error'" />
+                        <ul th:if="${#fields.hasErrors('nome')}">
+                            <li th:each="error : ${#fields.errors('nome')}" th:text="${error}" class="text-danger" />
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="preco" class="control-label col-sm-2">Preço</label>
+                        <input th:field="*{preco}" type="text" class="col-sm-10"
+                            th:class="${#fields.hasErrors('preco')} ? 'field-error'" />
+                        <ul th:if="${#fields.hasErrors('preco')}">
+                            <li th:each="error : ${#fields.errors('preco')}" th:text="${error}" class="text-danger" />
+                        </ul>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value="Cadastrar" />
+                    </div>
+                    <br />
+                </form>
+			</div>
+            <div class="pull-left">
+                <a th:href="@{/itens/}" href="list.html">
+                    Voltar
+                </a>
+            </div>
+		</div>
+	</body>
+</html>
