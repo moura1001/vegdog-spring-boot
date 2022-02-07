@@ -1,13 +1,10 @@
 package com.example.vegdog.model.entity;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,14 +23,14 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(optional = true)
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	private Cliente cliente;
 	
 	@ManyToMany
 	@Cascade(CascadeType.MERGE)
 	private List<Item> itens;
 	
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private Date data;
 	
 	@Min(Long.MIN_VALUE)
@@ -46,7 +43,7 @@ public class Pedido {
 		this.cliente = cliente;
 		this.itens = itens;
 		this.precoTotal = precoTotal;
-		this.data = getCurrentDateDayMonthYear();
+		this.data = new Date(System.currentTimeMillis());
 	}
 
 	public Long getId() {
@@ -83,19 +80,22 @@ public class Pedido {
 	public void setPrecoTotal(Double precoTotal) {
 		this.precoTotal = precoTotal;
 	}
-	
-	private Date getCurrentDateDayMonthYear() {
-		String pattern = "dd-MM-yyyy";
-		DateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		String date = simpleDateFormat.format(new Date(System.currentTimeMillis()));
-		
-		try {
-			return simpleDateFormat.parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pedido other = (Pedido) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }

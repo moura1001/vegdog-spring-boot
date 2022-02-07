@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+	<head>
+		<title>Pedido</title>
+	</head>
+	<body>
+		<h1 layout:fragment="header">
+			Cadastro de pedido
+		</h1>
+		<div layout:fragment="content" class="input-form">
+			<div class="well">
+				<form id="pedidoForm" th:action="@{/pedidos/(form)}" th:object="${pedido}"
+                    action="#" method="post" class="form-horizontal"
+                >
+                    <input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" />
+                    <div class="form-group">
+                        <label for="listaClientes" class="control-label col-sm-2">Clientes</label>
+                        <select id="listaClientes" th:field="*{cliente}" class="col-sm-10">
+                            <option th:each="cliente: ${clientesCadastrados}"
+                                th:value="${{cliente}}" th:text="${cliente.nome}" />
+                        </select>
+                        <ul th:if="${#fields.hasErrors('cliente')}">
+                            <li th:each="error : ${#fields.errors('cliente')}" th:text="${error}" class="text-danger" />
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="listaItens" class="control-label col-sm-2">Itens</label>
+                        <select id="listaItens" class="col-sm-10"
+                            multiple="multiple" th:field="*{itens}">
+                            <option th:each="item: ${itensCadastrados}"
+                                th:value="${{item}}" th:text="${item.nome}" />
+                        </select>
+                        <ul th:if="${#fields.hasErrors('itens')}">
+                            <li th:each="error : ${#fields.errors('itens')}" th:text="${error}" class="text-danger" />
+                        </ul>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value="Cadastrar" />
+                    </div>
+                    <br />
+                </form>
+			</div>
+            <div class="pull-left">
+                <a th:href="@{/pedidos/}" href="list.html">
+                    Voltar
+                </a>
+            </div>
+		</div>
+	</body>
+</html>

@@ -2,6 +2,7 @@ package com.example.vegdog.model.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -29,8 +28,8 @@ public class Cliente {
 	@Length(min=3, max=128)
 	private String endereco;	
 	
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
-	@Cascade(CascadeType.ALL)
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Pedido> pedidos;
 	
 	public Cliente(){}
@@ -67,6 +66,12 @@ public class Cliente {
 	}
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+	public void addPedido(Pedido pedido) {
+		pedidos.add(pedido);
+	}
+	public void removePedido(Pedido pedido) {
+		pedidos.remove(pedido);
 	}
 
 }
