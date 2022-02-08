@@ -1,4 +1,4 @@
-# VegDog
+# Veg Dog
 
 Projeto de um sistema para controle de pedidos de delivery.
 
@@ -10,6 +10,7 @@ Backend:
  - Spring Boot
  - Spring Web
  - Spring Data
+ - Spring Actuator
 
 Frontend:
  - Thymeleaf e Bootstrap
