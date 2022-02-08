@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+	<head>
+		<title>Ambiente</title>
+	</head>
+	<body>
+		<h1 layout:fragment="header">
+			Spring Actuator
+		</h1>
+		<div layout:fragment="content" class="container">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td>Endpoint</td>
+                        <td>Descrição</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a th:href="@{/actuator}" href="#">Actuator</a>
+                        </td>
+                        <td>
+                            <p>Lista todos os endpoints de monitoramento</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:href="@{/actuator/env}" href="#">Env</a>
+                        </td>
+                        <td>
+                            <p>Expõe propriedades do ConfigurableEnvironment do Spring</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:href="@{/actuator/health}" href="#">Health</a>
+                        </td>
+                        <td>
+                            <p>Exibe informações sobre o status da aplicação</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:href="@{/actuator/httptrace}" href="#">HTTP trace</a>
+                        </td>
+                        <td>
+                            <p>Exibe informações de rastreamento HTTP</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:href="@{/actuator/metrics}" href="#">Metrics</a>
+                        </td>
+                        <td>
+                            <p>Exibe informações de "métricas" da aplicação</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:href="@{/actuator/mappings}" href="#">Mappings</a>
+                        </td>
+                        <td>
+                            <p>Exibe uma lista de todos os caminhos @RequestMapping</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:href="@{/actuator/threaddump}" href="#">Thread dump</a>
+                        </td>
+                        <td>
+                            <p>Executa um thread dump</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pull-left"><a th:href="@{/}">Voltar</a></div>
+		</div>
+	</body>
+</html>
