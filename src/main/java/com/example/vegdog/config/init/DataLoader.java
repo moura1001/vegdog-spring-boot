@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.example.vegdog.model.entity.Cliente;
@@ -14,6 +15,7 @@ import com.example.vegdog.model.entity.Pedido;
 import com.example.vegdog.model.repository.ClienteRepository;
 
 @Component
+@Profile("dev")
 class DataLoader implements ApplicationRunner {
 
 	private static final long ID_CLIENTE_JOAO = 10l;
