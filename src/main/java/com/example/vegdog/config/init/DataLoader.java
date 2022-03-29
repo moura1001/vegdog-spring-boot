@@ -15,7 +15,7 @@ import com.example.vegdog.model.entity.Pedido;
 import com.example.vegdog.model.repository.ClienteRepository;
 
 @Component
-//@Profile("dev")
+@Profile("dev")
 class DataLoader implements ApplicationRunner {
 
 	private static final long ID_CLIENTE_JOAO = 10l;
