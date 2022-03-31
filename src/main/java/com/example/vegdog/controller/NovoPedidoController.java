@@ -3,6 +3,7 @@ package com.example.vegdog.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,13 @@ public class NovoPedidoController {
 		
 		try {
 			
-			Cliente cliente = clienteRepository.findByNome(pedido.getClienteNome()).get();
+			Optional<Cliente> c = clienteRepository.findByNome(pedido.getClienteNome());
+						
+			if(c.isEmpty()) {
+				throw new Exception("Usuário não cadastrado");
+			}
+			
+			Cliente cliente = c.get();
 			
 			Pedido novoPedido = new Pedido();
 			
