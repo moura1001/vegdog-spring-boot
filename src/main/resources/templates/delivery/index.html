@@ -11,20 +11,20 @@
         <script type="text/javascript" th:src="@{/js/checklist-model.js}"></script>
 	</head>
 	<body>
-		<h1 layout:fragment="header"> ??? </h1>
+		<h1 layout:fragment="header"> Delivery - Novo Pedido </h1>
 		<div layout:fragment="content" class="input-form">
 			<div class="well" ng-controller="pedidoController">
 				<form class="form-horizontal">
                     <div class="form-group">
-                        <label for="nome" class="control-label col-sm-2">Nome</label>
-                        <input type="text" id="nome" ng-model="cliente" class="col-sm-10" />
+                        <label for="nome" class="col-sm-2">Nome</label>
+                        <input type="text" id="nome" ng-model="cliente" class="col-sm-8" />
                     </div>
                     <div class="form-group">
+                        <label class="col-md-12" for="checkboxes">Cardápio</label>
                         <div class="col-md-12">
 							<div class="checkbox checkbox-primary" ng-repeat="i in itens">
 								<label for="checkboxes-0" class="opcao"> 
 								<input name="checkboxes"
-								    class=" "
 									checklist-model="pedidoItens"
 									checklist-value="i"
 									ng-click="selecionarItem(i)"
@@ -48,18 +48,19 @@
 					</div>
                     <br />
                 </form>
+                <div class="alert alert-success" ng-show="idPedido!=null">
+                    <strong>Pedido {{idPedido}}</strong> {{mensagem}} 
+                </div>
+                <div class="alert alert-warning" ng-show="idPedido!=null">
+                    Valor do pedido: <strong>{{precoTotal}}</strong> reais.
+                </div>
+                <div class="alert alert-danger" ng-show="idPedido==null && mensagem!=null">
+                    <strong>{{mensagem}}</strong>
+                </div>
+                <div class="alert alert-danger" ng-show="error!=null">
+                    <strong>{{error}}</strong>
+                </div>
 			</div>
-            <div class="alert alert-success" ng-show="idPedido!=null">
-                <strong>Pedido {{idPedido}}</strong> {{mensagem}} 
-            </div>
-            <div class="alert alert-warning" ng-show="idPedido!=null">
-                Valor do pedido: <strong>{{precoTotal}}</strong> reais.
-            </div>
-            <div class="alert alert-warning" ng-show="idPedido!=null">
-                Chamada do serviço: <strong>{{urlPedido}}</strong> 
-            </div>
-            <fieldset>{{message}}</fieldset>
-            <div class="pull-left"><a th:href="@{/}">Voltar</a></div>
 		</div>
 	</body>
 </html>

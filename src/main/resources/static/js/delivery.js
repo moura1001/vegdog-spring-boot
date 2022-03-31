@@ -33,12 +33,11 @@ app.controller('pedidoController', function ($scope, $location, $http) {
         }
 
         $http.post($scope.urlPedido, data).success(function (data) {
-            console.log(data["pedido"]);
             $scope.idPedido = data["pedido"];
             $scope.precoTotal = data["precoTotal"];
             $scope.mensagem = data["mensagem"];
         }).error(function (data, status) {
-            $scope.message = "Aconteceu um problema: "
+            $scope.error = "Aconteceu um problema: "
                 + "Status:" + data.status + " - error:" + data.error;
         });
     };
