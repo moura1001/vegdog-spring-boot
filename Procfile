@@ -1,1 +1,1 @@
-web java -Dserver.port=$PORT $JAVA_OPTS -jar target/vegdog.jar -Dspring.profiles.active=heroku
+web java -Dspring.profiles.active=heroku -Dserver.port=$PORT $JAVA_OPTS -jar target/vegdog.jar
