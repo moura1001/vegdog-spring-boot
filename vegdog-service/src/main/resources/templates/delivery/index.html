@@ -60,6 +60,13 @@
                 <div class="alert alert-danger" ng-show="error!=null">
                     <strong>{{error}}</strong>
                 </div>
+                <div class="alert alert-danger" ng-show="oferta!=null && oferta!='nenhuma'">
+                    <img width=64 height=64 th:src="@{/images/oferta.png}"/> {{oferta}}
+                    <div ng-show="serverInfo">
+                        <br/> 
+                        <img width=64 height=64 th:src="@{/images/servidor.png}"/> <strong>{{servidor}}</strong>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</body>
