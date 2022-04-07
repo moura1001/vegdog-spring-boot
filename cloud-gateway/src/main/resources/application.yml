@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: vegdog-delivery
+          uri: lb://vegdog-delivery
+          predicates:
+            - Path=/delivery/**,/api/**
+        - id: vegdog-admin
+          uri: lb://vegdog-admin
+          predicates:
+            - Path=/admin/**,/api/**
