@@ -11,7 +11,7 @@
 		</h1>
 		<div layout:fragment="content" class="input-form">
 			<div class="well">
-				<form id="itemForm" th:action="@{/itens/(form)}" th:object="${item}"
+				<form id="itemForm" th:action="@{/admin/itens/(form)}" th:object="${item}"
                     action="#" method="post" class="form-horizontal"
                 >
                     <input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" />
@@ -38,7 +38,7 @@
                 </form>
 			</div>
             <div class="pull-left">
-                <a th:href="@{/itens/}" href="list.html">
+                <a th:href="@{/admin/itens/}" href="list.html">
                     Voltar
                 </a>
             </div>

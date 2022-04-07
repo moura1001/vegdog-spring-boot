@@ -20,7 +20,7 @@ app.controller('pedidoController', function ($scope, $location, $http) {
     };
 
     var carregarOferta = function () {
-        $http.get("/oferta").success(function (data) {
+        $http.get("/delivery/oferta").success(function (data) {
             $scope.oferta = data["oferta"];
             $scope.serverInfo = data["serverInfo"];
             $scope.servidor = data["servidor"];
@@ -35,7 +35,7 @@ app.controller('pedidoController', function ($scope, $location, $http) {
         for (var i = 0; i < $scope.pedidoItens.length; i++)
             itensId.push($scope.pedidoItens[i].id);
         
-        $scope.urlPedido = "/rest/pedido/novo";
+        $scope.urlPedido = "/delivery/rest/pedido/novo";
 
         var data = {
             "clienteNome" : cliente,

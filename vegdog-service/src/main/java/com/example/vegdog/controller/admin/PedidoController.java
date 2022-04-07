@@ -1,4 +1,4 @@
-package com.example.vegdog.controller;
+package com.example.vegdog.controller.admin;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,8 @@ import com.example.vegdog.model.repository.ItemRepository;
 import com.example.vegdog.model.repository.PedidoRepository;
 
 @Controller
-@RequestMapping("/pedidos")
+@RequestMapping("/admin/pedidos")
+@Profile("admin")
 public class PedidoController {
 	
 	@Autowired
@@ -89,7 +91,7 @@ public class PedidoController {
 				clienteRepository.save(cliente);
 			}
 			redirect.addFlashAttribute("globalMessage", "Pedido cadastrado com sucesso");
-			return new ModelAndView("redirect:/pedidos/{pedido.id}",
+			return new ModelAndView("redirect:/admin/pedidos/{pedido.id}",
 					"pedido.id", pedido.getId());
 		}
 		return new ModelAndView("pedido/form", "formErrors", result.getAllErrors());
@@ -111,6 +113,6 @@ public class PedidoController {
 		pedido.setCliente(null);
 		pedidoRepository.delete(pedido);
 		redirect.addFlashAttribute("globalMessage", "Pedido removido com sucesso");
-		return "redirect:/pedidos/";
+		return "redirect:/admin/pedidos/";
 	}
 }

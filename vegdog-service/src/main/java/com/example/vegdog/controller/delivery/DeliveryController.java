@@ -1,4 +1,4 @@
-package com.example.vegdog.controller;
+package com.example.vegdog.controller.delivery;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.vegdog.model.bean.VegDogConfigProperties;
 import com.example.vegdog.model.dto.OfertaDTO;
 
 @Controller
+@RequestMapping("/delivery")
 @Profile("delivery")
 public class DeliveryController {
 	

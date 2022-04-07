@@ -1,4 +1,4 @@
-package com.example.vegdog.controller;
+package com.example.vegdog.controller.delivery;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +26,7 @@ public class NovoPedidoController {
 	@Autowired
 	private ItemRepository itemRepository;
 	
-	@PostMapping("/rest/pedido/novo")
+	@PostMapping("/delivery/rest/pedido/novo")
 	public RespostaPedidoDTO novo(@RequestBody PedidoDTO pedido) {
 		RespostaPedidoDTO resposta = new RespostaPedidoDTO();
 		

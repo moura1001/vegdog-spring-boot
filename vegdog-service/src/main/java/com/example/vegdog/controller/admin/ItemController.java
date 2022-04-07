@@ -1,8 +1,9 @@
-package com.example.vegdog.controller;
+package com.example.vegdog.controller.admin;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,8 @@ import com.example.vegdog.model.entity.Item;
 import com.example.vegdog.model.repository.ItemRepository;
 
 @Controller
-@RequestMapping("/itens")
+@RequestMapping("/admin/itens")
+@Profile("admin")
 public class ItemController {
 	
 	@Autowired
@@ -45,7 +47,7 @@ public class ItemController {
 		if(!result.hasErrors()) {
 			item = itemRepository.save(item);
 			redirect.addFlashAttribute("globalMessage", "Item cadastrado com sucesso");
-			return new ModelAndView("redirect:/itens/{item.id}",
+			return new ModelAndView("redirect:/admin/itens/{item.id}",
 					"item.id", item.getId());
 		}
 		return new ModelAndView("item/form", "formErrors", result.getAllErrors());
@@ -60,6 +62,6 @@ public class ItemController {
 	public String delete(@PathVariable("id") Long id, RedirectAttributes redirect) {
 		itemRepository.deleteById(id);
 		redirect.addFlashAttribute("globalMessage", "Item removido com sucesso");
-		return "redirect:/itens/";
+		return "redirect:/admin/itens/";
 	}
 }

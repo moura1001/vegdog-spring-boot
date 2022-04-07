@@ -13,16 +13,14 @@
 		<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 		<style>
 			input.field-error, textarea.field-error { border: 1px solid #B94A48; }
-			.navbar-brand { float: none; }
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<nav class="navbar navbar-default navbar-static-top">
 				<div class="navbar-header">
-					<a class="navbar-brand" th:href="@{/}">
-						<img width=64 height=64 th:src="@{/images/hotdog.png}" src="../static/images/hotdog.png" />
-					</a>
+					<img class="navbar-brand mx-auto"
+						width=64 height=64 th:src="@{/images/hotdog.png}" src="../../static/images/hotdog.png" />
 				</div>
 			</nav>
 			<h1 layout:fragment="header">Cabeçalho</h1>

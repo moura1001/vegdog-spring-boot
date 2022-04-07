@@ -11,7 +11,7 @@
 		</h1>
 		<div layout:fragment="content" class="input-form">
 			<div class="well">
-				<form id="pedidoForm" th:action="@{/pedidos/(form)}" th:object="${pedido}"
+				<form id="pedidoForm" th:action="@{/admin/pedidos/(form)}" th:object="${pedido}"
                     action="#" method="post" class="form-horizontal"
                 >
                     <input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" />
@@ -43,7 +43,7 @@
                 </form>
 			</div>
             <div class="pull-left">
-                <a th:href="@{/pedidos/}" href="list.html">
+                <a th:href="@{/admin/pedidos/}" href="list.html">
                     Voltar
                 </a>
             </div>
